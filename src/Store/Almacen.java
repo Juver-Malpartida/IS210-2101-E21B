@@ -1,5 +1,9 @@
 package Store;
 
+import Documents.Documento;
+import Users.Usuario;
+import Store.Producto;
+
 public class Almacen {
    Usuario[] usuarioss;
     Producto[] productoss;
