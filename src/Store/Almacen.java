@@ -1,22 +1,25 @@
 package Store;
 
+import Documents.DocumentSalida;
 import Documents.Documento;
+import Documents.DocumentoIngreso;
 import Users.Usuario;
-import Store.Producto;
+
+import java.util.Collections;
 
 public class Almacen {
-   Usuario[] usuarioss;
+    Usuario[] usuarioss;
     Producto[] productoss;
     Documento[] documentoss;
+    Item[] itemss;
     int cantidadDocumentos;
     int cantidadProductos;
     int cantidadusuarios;
-    static final int maxdocumentos=1000;
-    static final int maxusuarios=5;
-    static final int maxproductos=5;
-    Item[] itemss;
     int cantidaditem;
-    static final int maxitem=5;
+    static final int maxdocumentos=1000;
+    static final int maxusuarios=1000;
+    static final int maxproductos=1000;
+    static final int maxitem=1000;
 
     public Almacen() {
         this.itemss=new Item[maxitem];
@@ -28,10 +31,8 @@ public class Almacen {
         this.documentoss=new Documento[maxdocumentos];
         this.cantidadDocumentos=0;
     }
-    //public Almacen() {
 
-    //}
-
+    //REGISTRAR
     public void registrar_usuario(Usuario user){
         usuarioss[cantidadusuarios]=user;
         cantidadusuarios++;
@@ -47,6 +48,7 @@ public class Almacen {
         cantidadDocumentos++;
     }
 
+    //LISTAR
     public void listarTrabajadores(){
         for(int i = 0; i < cantidadusuarios;i++){
             System.out.println(usuarioss[i]);
@@ -74,8 +76,8 @@ public class Almacen {
             System.out.println(itemss[i]);
         }
     }
-   
-   public Producto buscarxproducto(String nom_prod) throws ExceptionProductoNoEncontrado {
+
+    public Producto buscarxproducto(String nom_prod) throws ExceptionProductoNoEncontrado {
         for(int i = 0; i < cantidadProductos;i++) {
             Producto producto = productoss[i];
             if (producto.getNombre_producto().equals(nom_prod)) {
@@ -84,4 +86,88 @@ public class Almacen {
         }
         throw new ExceptionProductoNoEncontrado();
     }
+
+    public Producto buscarxproductoxcodigo(String cod_prod) throws ExceptionCodigoProductoNoEncontrado {
+            for(int i = 0; i < cantidadProductos;i++) {
+                Producto producto = productoss[i];
+                if (producto.getIdproducto().equals(cod_prod)) {
+                    return producto;
+                }
+            }
+        throw new ExceptionCodigoProductoNoEncontrado();
+    }
+
+    public Documento ProveedorxIngreso(String proveedor)throws ExceptionProveedorNoEncontrado{
+        for (int i=0 ;i<cantidadDocumentos; i++){
+            Documento entrada= documentoss[i];
+            if(entrada instanceof DocumentoIngreso){
+                if (((DocumentoIngreso) entrada).getProveedor().equals(proveedor)) {
+                    System.out.println(entrada);
+                }
+            }
+
+        }
+        throw new ExceptionProveedorNoEncontrado();
+    }
+
+    public Documento ClientexSalida(String cliente)throws ExceptionClienteNoEncontrado{
+        for (int i=0 ;i<cantidadDocumentos; i++){
+            Documento salida= documentoss[i];
+            if(salida instanceof DocumentSalida){
+                if (((DocumentSalida) salida).getCliente().equals(cliente)) {
+                    System.out.println(salida);
+                }
+            }/*else {
+                throw new ExceptionProveedorNoEncontrado();
+            }*/
+
+        }
+        throw new ExceptionClienteNoEncontrado();
+    }
+
+    public Documento DocumentoxUsuario(String usuario) throws ExceptionUsuarioNoExiste{
+        for (int i=0 ;i<cantidadDocumentos; i++){
+            if(documentoss[i].getUsuario().getNombres().equals(usuario)){
+                System.out.println(documentoss[i]);
+            }
+        }
+        throw new ExceptionUsuarioNoExiste();
+    }
+
+    public Documento MayorCantidadxSalida(){
+        double mayorPuntaje=0;
+        Documento mayocantidad=null;
+        for(Documento document:documentoss){
+            if(document instanceof DocumentSalida){
+                if(document.getItem().getCantidad()>mayorPuntaje){
+                    mayorPuntaje=document.getItem().getCantidad();
+                    mayocantidad=document;
+                }
+            }
+        }
+        return mayocantidad;
+    }
+
+    public double ValorxIngreso(){
+        double sumaIngreso=0;
+        for (int i=0;i<cantidadDocumentos;i++){
+            if(documentoss[i] instanceof DocumentoIngreso){
+                sumaIngreso=sumaIngreso+documentoss[i].getItem().calcularValorEntrada();
+            }
+        }
+        return sumaIngreso;
+    }
+    public double ValorxSalida(){
+        double sumaSalida=0;
+        for (int i=0;i<cantidadDocumentos;i++){
+            if(documentoss[i] instanceof DocumentSalida){
+                sumaSalida=sumaSalida+documentoss[i].getItem().calcularValorSalida();
+            }
+        }
+        return sumaSalida;
+    }
+
+
+
+
 }
