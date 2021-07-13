@@ -1,7 +1,7 @@
 package Store;
 
 public class Item {
-  private String nro_item;
+    private String nro_item;
     private Producto producto;
     private int cantidad;
 
