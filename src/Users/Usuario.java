@@ -1,16 +1,20 @@
 package Users;
 
 public abstract class Usuario {
-       private String id;
+    private String id;
     private String nombres;
     private String apellidos;
-    private int dni;
+    private String dni;
 
-    public Usuario(String id, String nombres, String apellidos, int dni) {
+    public Usuario(String id, String nombres, String apellidos, String dni) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getNombres() {
@@ -23,11 +27,10 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return 
+        return
                 "id='" + id + '\'' +
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", dni=" + dni;
     }
-
 }
