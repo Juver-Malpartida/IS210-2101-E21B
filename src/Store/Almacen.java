@@ -131,7 +131,7 @@ public class Almacen {
             Date fechaDocumento = documento.getFecha();
             boolean isDocumentInRange = (fechaDocumento.before(fechaFinObj) || fechaDocumento.equals(fechaFinObj)) && (fechaDocumento.after(fechaInicioObj) || fechaDocumento.equals(fechaInicioObj));
             if (producto.getNombre_producto().equals(nom_prod) && isDocumentInRange) {
-                System.out.println(producto);
+                System.out.println(documento);
                 encontrado = true;
             }
         }
