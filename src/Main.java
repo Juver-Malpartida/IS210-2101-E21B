@@ -1,3 +1,13 @@
+import Documents.DocumentSalida;
+import Documents.Documento;
+import Documents.DocumentoIngreso;
+import Store.Almacen;
+import Store.Item;
+import Store.Producto;
+import Users.Usuario;
+import Users.UsuarioAdministrador;
+import Users.UsuarioAlmacenero;
+
 public class Main {
 
     public static void main(String[] args){
