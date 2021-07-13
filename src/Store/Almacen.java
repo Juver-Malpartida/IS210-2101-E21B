@@ -102,7 +102,7 @@ public class Almacen {
             Documento entrada= documentoss[i];
             if(entrada instanceof DocumentoIngreso){
                 if (((DocumentoIngreso) entrada).getProveedor().equals(proveedor)) {
-                    System.out.println(entrada);
+                    return entrada;
                 }
             }
 
@@ -115,7 +115,7 @@ public class Almacen {
             Documento salida= documentoss[i];
             if(salida instanceof DocumentSalida){
                 if (((DocumentSalida) salida).getCliente().equals(cliente)) {
-                    System.out.println(salida);
+                    return salida;
                 }
             }/*else {
                 throw new ExceptionProveedorNoEncontrado();
@@ -128,7 +128,7 @@ public class Almacen {
     public Documento DocumentoxUsuario(String usuario) throws ExceptionUsuarioNoExiste{
         for (int i=0 ;i<cantidadDocumentos; i++){
             if(documentoss[i].getUsuario().getNombres().equals(usuario)){
-                System.out.println(documentoss[i]);
+                return documentoss[i];
             }
         }
         throw new ExceptionUsuarioNoExiste();

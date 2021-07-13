@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e54d42d-311f-409e-ba4d-b80161d14827" name="Default Changelist" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/Documents/DocumentSalida.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Documents/Documento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Documents/DocumentoIngreso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Store/Almacen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Store/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Store/Producto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Users/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Users/UsuarioAdministrador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Users/UsuarioAlmacenero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Store/Almacen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Store/Almacen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Store/ExceptionProductoNoEncontrado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Store/ExceptionProductoNoEncontrado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,5 +86,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>12</line>
+          <properties class="Main" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
