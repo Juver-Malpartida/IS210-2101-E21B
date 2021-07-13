@@ -6,11 +6,11 @@ import Users.Usuario;
 import Users.UsuarioAdministrador;
 import Users.UsuarioAlmacenero;
 
-import java.util.Collections;
+import java.text.ParseException;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException {
 
         Almacen almacen= new Almacen();
         //Registrar Usuarios
@@ -20,7 +20,7 @@ public class Main {
         Usuario u4=new UsuarioAdministrador("Adm001","Diego","Perez","57896542");
         Usuario u5=new UsuarioAdministrador("Adm002","Pietro","Gonzales","42352047");
         //Registrar Producto
-        Producto p1 = new Producto("P001","Ariel",150,8,10);
+        Producto p1 = new Producto("P001","Detergente",150,8,10);
         Producto p2 = new Producto("P002","Arroz",100,18,21);
         Producto p3 = new Producto("P003","Aceite",250,9.2,10);
         Producto p4 = new Producto("P004","Azucar",300,4,5.5);
@@ -32,12 +32,12 @@ public class Main {
         Item item4=new Item("I004",p4,110);
         Item item5=new Item("I005",p5,105);
         //Registrar Documentos
-        Documento doc1= new DocumentoIngreso("DE001",u1,"15012019",item1,"Provee1");
-        Documento doc2= new DocumentoIngreso("DE002",u2,"11042019",item5,"Provee2");
-        Documento doc3= new DocumentoIngreso("DE003",u3,"11012019",item4,"Provee3");
-        Documento doc4= new DocumentSalida("DS001",u3,"10012019",item3,"Clien1");
-        Documento doc5= new DocumentSalida("DS002",u2,"19032019",item2,"Clien2");
-        Documento doc6= new DocumentSalida("DS003",u1,"20072019",item1,"Clien3");
+        Documento doc1= new DocumentoIngreso("DE001",u1,"15/01/2019",item1,"Provee1");
+        Documento doc2= new DocumentoIngreso("DE002",u2,"11/04/2019",item5,"Provee2");
+        Documento doc3= new DocumentoIngreso("DE003",u3,"11/01/2019",item4,"Provee3");
+        Documento doc4= new DocumentSalida("DS001",u3,"10/01/2019",item3,"Clien1");
+        Documento doc5= new DocumentSalida("DS002",u2,"19/03/2019",item2,"Clien2");
+        Documento doc6= new DocumentSalida("DS003",u1,"20/07/2019",item1,"Clien3");
         almacen.registrar_Documentos(doc1);
         almacen.registrar_Documentos(doc2);
         almacen.registrar_Documentos(doc3);
@@ -66,30 +66,39 @@ public class Main {
         System.out.println("Lista de Documentos");
         System.out.println("-------------------");
         almacen.listarDocumentos();
+
         System.out.println("\t");
         System.out.println("Buscar x Nombre Producto");
         System.out.println("------------------------");
         try{
-            Producto BuscarxNombreProducto=almacen.buscarxproducto("Ariel");
-            System.out.println(BuscarxNombreProducto);
+            almacen.buscarxproducto("Detergente");
         }catch (ExceptionProductoNoEncontrado ex){
             System.out.println("El Producto no Existe");
         }
+
         System.out.println("\t");
         System.out.println("Buscar x Codigo Producto");
         System.out.println("------------------------");
         try{
-            Producto BuscarxCodigoProducto=almacen.buscarxproductoxcodigo("P005");
-            System.out.println(BuscarxCodigoProducto);
+            almacen.buscarxproductoxcodigo("P005");
         }catch (ExceptionCodigoProductoNoEncontrado ex){
             System.out.println("El Producto no Existe");
         }
+
+        System.out.println("\t");
+        System.out.println("Buscar Productos en rango de fechas");
+        System.out.println("------------------------");
+        try{
+            almacen.buscarProductosEnRango("Detergente", "01/01/2019", "24/07/2019");
+        }catch (ExceptionProductoNoEncontrado ex){
+            System.out.println("El Producto no Existe");
+        }
+
         System.out.println("\t");
         System.out.println("Buscar Documentos x Usuario");
         System.out.println("---------------------------");
         try{
-            Documento buscarxusuario = almacen.DocumentoxUsuario("Juan");
-            System.out.println(buscarxusuario);
+            almacen.DocumentoxUsuario("Juan");
         }catch (ExceptionUsuarioNoExiste ex){
             System.out.println("Nombre de Usuario No Existe");
         }
@@ -98,8 +107,7 @@ public class Main {
         System.out.println("Buscar Por Proveedor");
         System.out.println("--------------------");
         try {
-            Documento proveedor=almacen.ProveedorxIngreso("Provee1");
-            System.out.println(proveedor);
+            almacen.ProveedorxIngreso("Provee1");
         }catch (ExceptionProveedorNoEncontrado ex1){
             System.out.println("Proveedor no encontrado");
         }
@@ -107,8 +115,7 @@ public class Main {
         System.out.println("Buscar Por Cliente");
         System.out.println("------------------");
         try {
-            Documento cliente=almacen.ClientexSalida("Clien1");
-            System.out.println(cliente);
+            almacen.ClientexSalida("Clien1");
         }catch (ExceptionClienteNoEncontrado ex1){
             System.out.println("Cliente no encontrado");
         }

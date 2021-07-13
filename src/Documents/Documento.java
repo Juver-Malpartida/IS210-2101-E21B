@@ -3,16 +3,22 @@ package Documents;
 import Store.Item;
 import Users.Usuario;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public abstract class Documento {
     private String id_Documento;
     private Usuario usuario;
-    private String fecha;
+    private Date fecha;
     private Item item;
 
-    public Documento(String id_Documento, Usuario usuario, String fecha, Item item) {
+    public Documento(String id_Documento, Usuario usuario, String fecha, Item item) throws ParseException {
         this.id_Documento = id_Documento;
         this.usuario = usuario;
-        this.fecha = fecha;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        this.fecha = simpleDateFormat.parse( fecha);
         this.item = item;
     }
 
@@ -20,7 +26,7 @@ public abstract class Documento {
         return usuario;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 

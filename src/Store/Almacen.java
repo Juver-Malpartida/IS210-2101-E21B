@@ -5,7 +5,10 @@ import Documents.Documento;
 import Documents.DocumentoIngreso;
 import Users.Usuario;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 
 public class Almacen {
     Usuario[] usuarioss;
@@ -77,61 +80,110 @@ public class Almacen {
         }
     }
 
-    public Producto buscarxproducto(String nom_prod) throws ExceptionProductoNoEncontrado {
+    public void buscarxproducto(String nom_prod) throws ExceptionProductoNoEncontrado {
+        boolean encontrado = false;
         for(int i = 0; i < cantidadProductos;i++) {
             Producto producto = productoss[i];
             if (producto.getNombre_producto().equals(nom_prod)) {
-                return producto;
+                System.out.println(producto);
+                encontrado = true;
             }
         }
-        throw new ExceptionProductoNoEncontrado();
+        if (!encontrado) {
+            throw new ExceptionProductoNoEncontrado();
+        }
     }
 
-    public Producto buscarxproductoxcodigo(String cod_prod) throws ExceptionCodigoProductoNoEncontrado {
+    public void buscarxproductoxcodigo(String cod_prod) throws ExceptionCodigoProductoNoEncontrado {
+        boolean encontrado = false;
             for(int i = 0; i < cantidadProductos;i++) {
                 Producto producto = productoss[i];
                 if (producto.getIdproducto().equals(cod_prod)) {
-                    return producto;
+                    System.out.println(producto);
+                    encontrado = true;
                 }
             }
-        throw new ExceptionCodigoProductoNoEncontrado();
+        if (!encontrado) {
+            throw new ExceptionCodigoProductoNoEncontrado();
+        }
     }
 
-    public Documento ProveedorxIngreso(String proveedor)throws ExceptionProveedorNoEncontrado{
+    public void buscarProductosEnRango(String nom_prod, String fechaInicio, String fechaFin) throws ExceptionProductoNoEncontrado {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat.setLenient(false);
+        Date fechaInicioObj, fechaFinObj;
+        try {
+            fechaInicioObj = simpleDateFormat.parse( fechaInicio );
+            fechaFinObj = simpleDateFormat.parse( fechaFin );
+        } catch (ParseException e) {
+            System.out.println("Fecha invalida. El formato es dd/MM/yyyy");
+            return;
+        }
+
+        if (fechaFinObj.before(fechaInicioObj)) {
+            System.out.println("Rango de fechas invalido. La fecha de inicio debe ser menor que la fecha fin.");
+        }
+
+        boolean encontrado = false;
+        for(int i = 0; i < cantidadDocumentos;i++) {
+            Documento documento = documentoss[i];
+            Producto producto = documento.getItem().getProducto();
+            Date fechaDocumento = documento.getFecha();
+            boolean isDocumentInRange = (fechaDocumento.before(fechaFinObj) || fechaDocumento.equals(fechaFinObj)) && (fechaDocumento.after(fechaInicioObj) || fechaDocumento.equals(fechaInicioObj));
+            if (producto.getNombre_producto().equals(nom_prod) && isDocumentInRange) {
+                System.out.println(producto);
+                encontrado = true;
+            }
+        }
+        if (!encontrado) {
+            throw new ExceptionProductoNoEncontrado();
+        }
+    }
+
+    public void ProveedorxIngreso(String proveedor)throws ExceptionProveedorNoEncontrado{
+        boolean encontrado = false;
         for (int i=0 ;i<cantidadDocumentos; i++){
             Documento entrada= documentoss[i];
             if(entrada instanceof DocumentoIngreso){
                 if (((DocumentoIngreso) entrada).getProveedor().equals(proveedor)) {
-                    return entrada;
+                    encontrado = true;
+                    System.out.println(entrada);
                 }
             }
 
         }
-        throw new ExceptionProveedorNoEncontrado();
+        if (!encontrado) {
+            throw new ExceptionProveedorNoEncontrado();
+        }
     }
 
-    public Documento ClientexSalida(String cliente)throws ExceptionClienteNoEncontrado{
+    public void ClientexSalida(String cliente)throws ExceptionClienteNoEncontrado{
+        boolean encontrado = false;
         for (int i=0 ;i<cantidadDocumentos; i++){
             Documento salida= documentoss[i];
             if(salida instanceof DocumentSalida){
                 if (((DocumentSalida) salida).getCliente().equals(cliente)) {
-                    return salida;
+                    encontrado = true;
+                    System.out.println(salida);
                 }
-            }/*else {
-                throw new ExceptionProveedorNoEncontrado();
-            }*/
-
-        }
-        throw new ExceptionClienteNoEncontrado();
-    }
-
-    public Documento DocumentoxUsuario(String usuario) throws ExceptionUsuarioNoExiste{
-        for (int i=0 ;i<cantidadDocumentos; i++){
-            if(documentoss[i].getUsuario().getNombres().equals(usuario)){
-                return documentoss[i];
             }
         }
-        throw new ExceptionUsuarioNoExiste();
+        if (!encontrado) {
+            throw new ExceptionClienteNoEncontrado();
+        }
+    }
+
+    public void DocumentoxUsuario(String usuario) throws ExceptionUsuarioNoExiste{
+        boolean encontrado = false;
+        for (int i=0 ;i<cantidadDocumentos; i++){
+            if(documentoss[i].getUsuario().getNombres().equals(usuario)){
+                encontrado = true;
+                System.out.println(documentoss[i]);
+            }
+        }
+        if (!encontrado) {
+            throw new ExceptionUsuarioNoExiste();
+        }
     }
 
     public Documento MayorCantidadxSalida(){
