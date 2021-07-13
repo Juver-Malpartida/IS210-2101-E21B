@@ -4,11 +4,15 @@ import Store.Item;
 import Users.Usuario;
 
 public class DocumentoIngreso extends Documento{
-      private String proveedor;
+    private String proveedor;
 
     public DocumentoIngreso(String id_Documento, Usuario usuario, String fecha, Item item, String proveedor) {
         super(id_Documento, usuario, fecha, item);
         this.proveedor = proveedor;
+    }
+
+    public String getProveedor() {
+        return proveedor;
     }
 
     @Override
@@ -16,8 +20,8 @@ public class DocumentoIngreso extends Documento{
         return "DocumentoIngreso{" +
                 super.toString()+
                 ", proveedor='" + proveedor + '\'' +
-                ", "+super.getItem()+
-                ", valor final= " + super.getItem().calcularValorEntrada()+
+                ", "+getItem()+
+                ", valor final= " + getItem().calcularValorEntrada()+
                 '}';
     }
 }
