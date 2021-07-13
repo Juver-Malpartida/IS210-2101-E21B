@@ -74,4 +74,14 @@ public class Almacen {
             System.out.println(itemss[i]);
         }
     }
+   
+   public Producto buscarxproducto(String nom_prod) throws ExceptionProductoNoEncontrado {
+        for(int i = 0; i < cantidadProductos;i++) {
+            Producto producto = productoss[i];
+            if (producto.getNombre_producto().equals(nom_prod)) {
+                return producto;
+            }
+        }
+        throw new ExceptionProductoNoEncontrado();
+    }
 }
