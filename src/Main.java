@@ -19,11 +19,11 @@ public class Main {
         Usuario u4=new UsuarioAdministrador("Adm001","Diego","Perez",57896542);
         Usuario u5=new UsuarioAdministrador("Adm002","Pietro","Gonzales",42352047);
 
-        Producto p1 = new Producto("P001","Ariel   - 4k",150,10,8,10);
-        Producto p2 = new Producto("P002","Arroz   - 10k",100,10,18,21);
-        Producto p3 = new Producto("P003","Aceite  - 1L",250,10,9.2,10);
-        Producto p4 = new Producto("P004","Azucar  - 5k",300,10,4,5.5);
-        Producto p5 = new Producto("P005","Gaseosa - 3L",250,10,7,8.5);
+        Producto p1 = new Producto("P001","Ariel",150,10,8,10);
+        Producto p2 = new Producto("P002","Arroz",100,10,18,21);
+        Producto p3 = new Producto("P003","Aceite",250,10,9.2,10);
+        Producto p4 = new Producto("P004","Azucar",300,10,4,5.5);
+        Producto p5 = new Producto("P005","Gaseosa",250,10,7,8.5);
 
         Item item1=new Item("I001",p1,150);
         Item item2=new Item("I002",p2,100);
