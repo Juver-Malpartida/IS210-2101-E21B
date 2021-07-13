@@ -1,5 +1,8 @@
 package Documents;
 
+import Store.Item;
+import Users.Usuario;
+
 public class DocumentoIngreso extends Documento{
       private String proveedor;
 
