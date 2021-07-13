@@ -4,7 +4,7 @@ import Store.Item;
 import Users.Usuario;
 
 public abstract class Documento {
-   private String id_Documento;
+    private String id_Documento;
     private Usuario usuario;
     private String fecha;
     private Item item;
@@ -14,6 +14,14 @@ public abstract class Documento {
         this.usuario = usuario;
         this.fecha = fecha;
         this.item = item;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public String getFecha() {
+        return fecha;
     }
 
     public Item getItem() {
