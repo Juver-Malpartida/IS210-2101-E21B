@@ -1,7 +1,7 @@
 package Users;
 
 public class UsuarioAdministrador extends Usuario{
-   public UsuarioAdministrador(String id, String nombres, String apellidos, int dni) {
+    public UsuarioAdministrador(String id, String nombres, String apellidos, String dni) {
         super(id, nombres, apellidos, dni);
     }
 
@@ -12,3 +12,4 @@ public class UsuarioAdministrador extends Usuario{
                 "}";
     }
 }
+
