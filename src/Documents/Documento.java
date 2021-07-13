@@ -1,5 +1,8 @@
 package Documents;
 
+import Store.Item;
+import Users.Usuario;
+
 public abstract class Documento {
    private String id_Documento;
     private Usuario usuario;
